@@ -1,16 +1,30 @@
-﻿//Testing
+﻿//Review Changes
+//Testing
+using System;
 using System.Diagnostics;
 
 namespace CMP1903_A1_2324
 {
+    /// <summary>
+    /// Class for testing the game functionality.
+    /// </summary>
     internal class Testing
     {
+        /// <summary>
+        /// Tests the game by rolling the dice and asserting their values.
+        /// </summary>
         public static void TestGame()
         {
             //creates a game object in refrence to the class game
             Game game = new Game();
             //using game object it calles the rollalldice method
             game.RollAllDice();
+
+            // Exception handling to ensure that Die actually gets a value and is not null.
+            if (game.Die1 == null || game.Die2 == null || game.Die3 == null)
+            {
+                throw new ArgumentNullException("One or more dice objects are null.");
+            }
 
             //tests and asserts the games output values to make sure they are within the criteria
             Debug.Assert(game.Die1.CurrentValue >= 1 && game.Die1.CurrentValue <= 6,
